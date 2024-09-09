@@ -1,6 +1,7 @@
 package repositories;
 
 import domain.Colaborador;
+import main.DatabaseConnection;
 
 import java.util.ArrayList;
 import java.util.List;
