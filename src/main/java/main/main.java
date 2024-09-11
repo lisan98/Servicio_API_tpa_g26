@@ -11,14 +11,16 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
         Javalin app = Javalin.create().start(7000);
-        SolicitudRepository repo = new SolicitudRepository();
+        SolicitudRepository solirepo = new SolicitudRepository();
+        ColaboradorRepository colarepo;
 
         app.get("/colaboradores", ctx -> {
             int puntosMinimos = Integer.parseInt(ctx.queryParam("puntosMinimos"));
             int donacionesMinimas = Integer.parseInt(ctx.queryParam("donacionesMinimas"));
             int cantidadMaxima = Integer.parseInt(ctx.queryParam("cantidadMaxima"));
 
-            SolicitudRecomendacion solicitud = repo.obtenerColaboradores(puntosMinimos, donacionesMinimas, cantidadMaxima);
+            SolicitudRecomendacion solicitud = solirepo.crearSolicitud(puntosMinimos, donacionesMinimas, cantidadMaxima);
+            solicitud.setColaboradores( solirepo.obtenerColaboradores(puntosMinimos, donacionesMinimas, cantidadMaxima));
             List<Colaborador> colaboradores = solicitud.getColaboradores();
             /*tengo que agregar un repository para crear las clases para luego persistir*/
             ctx.json(colaboradores);

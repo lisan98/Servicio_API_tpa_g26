@@ -17,9 +17,9 @@ public class SolicitudRepository {
 
     public SolicitudRecomendacion crearSolicitud(int puntosMinimos, int donacionesMinimas, int cantidadMaxima){
         SolicitudRecomendacion solicitud = new SolicitudRecomendacion();
-        solicitud.getPuntosMinimos(puntosMinimos);
-        solicitud.getDonacionesMinimas(donacionesMinimas);
-        solicitud.getCantidadMaxima(cantidadMaxima);
+        solicitud.setPuntosMinimos(puntosMinimos);
+        solicitud.setDonacionesMinimas(donacionesMinimas);
+        solicitud.setCantidadMaxima(cantidadMaxima);
     }
     public List<Colaborador> obtenerColaboradores(int puntosMinimos, int donacionesMinimas, int cantidadMaxima) {
         List<Colaborador> colaboradores = new ArrayList<>();
@@ -36,12 +36,11 @@ public class SolicitudRepository {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     if (ColaboradorRepository.getbyId(rs.getInt("id"))==null) {
-                        Colaborador colaborador = new Colaborador(
-                                rs.getInt("id"),
-                                rs.getString("nombre"),
-                                rs.getInt("puntos"),
-                                rs.getInt("donacionesViandas")
-                        );
+                        Colaborador colaborador = new Colaborador();
+                        colaborador.setId(rs.getInt("id"));
+                        colaborador.setNombre(rs.getString("nombre"));
+                        colaborador.setPuntaje(rs.getInt("puntos"));
+                        colaborador.setColabRealizadas(rs.getInt("donacionesViandas"));
                         colaboradores.add(colaborador);
                     }else{
                         colaboradores.add(ColaboradorRepository.getbyId(rs.getInt("id")));
