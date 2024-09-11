@@ -1,6 +1,7 @@
 package repositories;
 
 import domain.Colaborador;
+import domain.SolicitudRecomendacion;
 import main.DatabaseConnection;
 
 import java.sql.Connection;
@@ -12,6 +13,14 @@ import java.util.List;
 
 public class SolicitudRepository {
 
+    private static final List<SolicitudRecomendacion> solicitudList = new ArrayList<>();
+
+    public SolicitudRecomendacion crearSolicitud(int puntosMinimos, int donacionesMinimas, int cantidadMaxima){
+        SolicitudRecomendacion solicitud = new SolicitudRecomendacion();
+        solicitud.getPuntosMinimos(puntosMinimos);
+        solicitud.getDonacionesMinimas(donacionesMinimas);
+        solicitud.getCantidadMaxima(cantidadMaxima);
+    }
     public List<Colaborador> obtenerColaboradores(int puntosMinimos, int donacionesMinimas, int cantidadMaxima) {
         List<Colaborador> colaboradores = new ArrayList<>();
         String sql = "SELECT TOP ? id, nombre, puntos, donacionesViandas " +
