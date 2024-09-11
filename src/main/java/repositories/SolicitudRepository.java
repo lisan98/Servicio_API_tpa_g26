@@ -20,6 +20,7 @@ public class SolicitudRepository {
         solicitud.setPuntosMinimos(puntosMinimos);
         solicitud.setDonacionesMinimas(donacionesMinimas);
         solicitud.setCantidadMaxima(cantidadMaxima);
+        return solicitud;
     }
     public List<Colaborador> obtenerColaboradores(int puntosMinimos, int donacionesMinimas, int cantidadMaxima) {
         List<Colaborador> colaboradores = new ArrayList<>();
