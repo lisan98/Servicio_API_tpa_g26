@@ -3,6 +3,11 @@ package main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 
 public class DatabaseConnection {
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=tu_base_de_datos";

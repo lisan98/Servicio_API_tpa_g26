@@ -6,8 +6,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Colaborador {
+    private int id;
     private String nombre;
-    private String contacto;
     private int puntaje;
     private int colabRealizadas;
 
