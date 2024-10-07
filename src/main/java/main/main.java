@@ -14,13 +14,13 @@ public class main {
         SolicitudRepository solirepo = new SolicitudRepository();
         ColaboradorRepository colarepo = new ColaboradorRepository();
 
-        app.get("/colaboradores", ctx -> {
-            int puntosMinimos = Integer.parseInt(ctx.queryParam("puntosMinimos"));
-            int donacionesMinimas = Integer.parseInt(ctx.queryParam("donacionesMinimas"));
-            int cantidadMaxima = Integer.parseInt(ctx.queryParam("cantidadMaxima"));
+        app.get("api/colaboradores", ctx -> {
+            int puntosMinimos = Integer.parseInt(ctx.body());
+            int donacionesMinimas = Integer.parseInt(ctx.body());
+            int maxColaboradores = Integer.parseInt(ctx.body());
 
-            SolicitudRecomendacion solicitud = solirepo.crearSolicitud(puntosMinimos, donacionesMinimas, cantidadMaxima);
-            List<Colaborador> colaboradores =solirepo.obtenerColaboradores(puntosMinimos, donacionesMinimas, cantidadMaxima);
+            SolicitudRecomendacion solicitud = solirepo.crearSolicitud(puntosMinimos, donacionesMinimas, maxColaboradores);
+            List<Colaborador> colaboradores =solirepo.obtenerColaboradores(puntosMinimos, donacionesMinimas, maxColaboradores);
             solicitud.setColaboradores(colaboradores);
             colarepo.addColaborador(colaborador);
             /*tengo que agregar un metodo para agregar una lista al repo*/
