@@ -20,6 +20,11 @@ public class ColaboradorRepository {
                 .orElse(null);
     }
 
+    public boolean guardarColaboradores(List<Colaborador> colaboradores){
+        colaboradores.forEach(this::addColaborador);
+        return true;
+    }
+
 
     public boolean eliminarColaborador(int id){
         return colaboradoresList.removeIf(t->t.getId()== id);
